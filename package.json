@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "prepare": "husky install",
+    "format": "prettier --ignore-path .gitignore --write \"src/**/*.+(ts|tsx|js|jsx|scss)\"",
+    "lint": "eslint --ignore-path .gitignore \"src/**/*.{ts,tsx,js,jsx}\" --fix"
   },
   "dependencies": {
     "next": "11.1.0",
@@ -26,6 +28,14 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.3.2"
+    "husky": "^7.0.0",
+    "prettier": "^2.3.2",
+    "sass": "^1.38.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test",
+      "pre-push": "npm run format && npm run lint && git add ."
+    }
   }
 }
